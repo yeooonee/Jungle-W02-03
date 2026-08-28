@@ -31,6 +31,9 @@
 - 리스트 컴프리헨션을 사용하면 간결하게 작성할 수 있습니다
 """
 
+# 260828 풀이
+# 파이썬 method 를 사용해 더 쉽게 할 방법이 있을텐데 ..
+
 def find_above_average_students(students):
     """
     평균 점수 이상인 학생들을 찾는 함수
@@ -41,16 +44,29 @@ def find_above_average_students(students):
     Returns:
         tuple: (평균 점수, 평균 이상 학생 이름 리스트)
     """
+    score_list = []
     # TODO: 모든 학생의 점수를 리스트로 추출하세요
-    pass
-    
+    for i in students:
+        score = i['score']
+        score_list.append(score)
+            
     # TODO: 평균 점수를 계산하세요
-    pass
-    
+    average = 0
+    for i in score_list:
+        average += i
+
+    students_count = len(students)
+    average = average / students_count
+        
     # TODO: 평균 이상인 학생들의 이름을 리스트로 추출하세요
-    pass
+    above_average_students = []
+    for i in students:
+            score = i['score']
+            if score > average:
+                above_average_students.append(i['name'])
     
     return average, above_average_students
+
 
 # 테스트 케이스
 if __name__ == "__main__":
