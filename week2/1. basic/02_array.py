@@ -31,6 +31,10 @@
 - 새로운 배열을 만들어 값을 채워넣으세요
 """
 
+# 8/28 문제풀이 point
+# 배열 만드는 것부터 고비 -> java 에서는 자동으로 만들어줘서 배열을 생성하는걸 코드화하는게 어려웠음 
+# 
+
 def rotate_matrix_90(matrix):
     """
     2차원 배열을 시계방향으로 90도 회전
@@ -43,14 +47,30 @@ def rotate_matrix_90(matrix):
     """
     n = len(matrix)
     
-    # TODO: n x n 크기의 새로운 배열을 생성하세요 (0으로 초기화)
-    pass
-        
+    # TODO: n x n 크기의 새로운 배열을 생성하세요 (0으로 초기화)        
+    arr_multiple = []
+    for i in range(n):
+        arr = []
+        for j in range(n): # n번 넣음 한줄에 (한 묶음)
+            arr.append(0)
+        arr_multiple.append(arr)
+    
+
+
     # TODO: 원본 배열의 각 요소를 회전된 위치에 배치하세요
     # 힌트: (i, j) 위치의 요소는 회전 후 (j, n-1-i) 위치로 이동
-    pass
     
-    return rotated
+    for i in range(n):
+        # print()
+        for j in range(n):
+            # print(j, end="")
+            # print(matrix[i][j], end="")
+            a = n - 1 - i
+
+            arr_multiple[j][a] = matrix[i][j]
+            
+    
+    return arr_multiple
 
 def print_matrix(matrix):
     """배열을 보기 좋게 출력하는 헬퍼 함수"""
