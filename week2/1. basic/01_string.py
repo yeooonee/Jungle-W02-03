@@ -1,3 +1,5 @@
+
+import re
 """
 [문자열 - 회문(Palindrome) 판별]
 
@@ -27,6 +29,7 @@
 def is_palindrome(s):
     """
     문자열이 회문인지 판별하는 함수
+    회문 : 이효리 -> 이효리 / 앞뒤가 똑같은 문자열
     
     Args:
         s: 판별할 문자열
@@ -36,14 +39,42 @@ def is_palindrome(s):
     """
     # TODO: 알파벳과 숫자만 남기고 소문자로 변환하세요
     # 힌트: isalnum() 메서드와 lower() 메서드 사용
-    pass
+    # pass
+    lower_s = s.lower()
+    clean_s = lower_s.replace(" ", "")
     
+    clean_s = re.sub(r'[^a-zA-Z가-힣0-9\s]', '', clean_s)
+        
     # TODO: 정제된 문자열이 회문인지 확인하세요
     # 방법1: 문자열을 뒤집어서 비교 ([::-1] 사용)
     # 방법2: 양 끝 인덱스를 이용한 투 포인터 방식
-    pass
+    # pass
     
-    #return False
+    # 8/28 문제풀이 point
+    # 투 포인터 방식에서 끝을 어떻게 낼지가 어려움
+    # 입력값 특수문자 제거 구글링
+    
+    
+    # 인덱스 비교 
+    result = 22
+    start = 0
+    end = len(clean_s) - 1
+
+    while start < len(clean_s) and end > 0:
+        # start 인덱스가 end 를 넘어가면 while 문 종료
+        if start > end :
+            break        
+        
+        # 첫글자 마지막 글자 다르면 return 
+        if clean_s[start] != clean_s[end]:
+            return False
+        
+        # 인덱스 증가
+        start += 1
+        end -= 1
+        
+    #  while 문 통과 시 회문
+    return True
 
 # 테스트 케이스
 if __name__ == "__main__":
