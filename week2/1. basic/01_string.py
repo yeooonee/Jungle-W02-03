@@ -47,18 +47,26 @@ def is_palindrome(s):
     lower_s = s.lower()
     clean_s = lower_s.replace(" ", "")
     
-    clean_s = re.sub(r'[^a-zA-Z가-힣0-9\s]', '', clean_s)
+    clean_s = re.sub(r'[^a-zA-Z가-힣0-9\s]', '', clean_s) # sub 
+    
+    
+    # replace 로 isalnum 반환값 
         
     # TODO: 정제된 문자열이 회문인지 확인하세요
     # 방법1: 문자열을 뒤집어서 비교 ([::-1] 사용)
     # 방법2: 양 끝 인덱스를 이용한 투 포인터 방식
     # pass
     
+    
+    if clean_s == clean_s[::-1]:
+        return True
+    else:
+        return False
+    
 
     
     
     # 인덱스 비교 
-    result = 22
     start = 0
     end = len(clean_s) - 1
 

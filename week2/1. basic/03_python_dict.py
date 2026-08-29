@@ -62,7 +62,7 @@ def find_above_average_students(students):
     above_average_students = []
     for i in students:
             score = i['score']
-            if score > average:
+            if score >= average:
                 above_average_students.append(i['name'])
     
     return average, above_average_students
