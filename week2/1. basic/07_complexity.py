@@ -37,8 +37,9 @@ def find_duplicates_brute_force(nums):
     for i in range(n-1):
         for j in range(i+1, n):
             if nums[i] == nums[j] :
-                if not nums[i] in duplicates:
                     duplicates.append(nums[i])
+    
+    duplicates = list(set(duplicates))
     
     return duplicates
 
@@ -61,10 +62,17 @@ def find_duplicates_sorting(nums):
     
     # TODO: 인접한 원소를 비교하여 중복 찾기
     # i와 i+1 원소가 같고, duplicates에 없으면 추가
-    for i in range(0,len(nums)-1):
+
+    # for i in range(0,len(nums)-1):
+    #     if nums[i] == nums[i+1]:
+    #         if not nums[i] in duplicates:
+    #             duplicates.append(nums[i])
+
+    for i in range(0, len(nums) - 1):
         if nums[i] == nums[i+1]:
-            if not nums[i] in duplicates:
-                duplicates.append(nums[i])
+            duplicates.append(nums[i])
+    
+    duplicates = list(set(duplicates))
     
     return duplicates
 
