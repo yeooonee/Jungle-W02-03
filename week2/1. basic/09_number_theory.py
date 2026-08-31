@@ -24,6 +24,8 @@
 - LCM 공식: lcm(a, b) = (a × b) / gcd(a, b)
 """
 
+import math
+
 def gcd(a, b):
     """
     유클리드 호제법을 사용한 최대공약수 계산
@@ -123,16 +125,30 @@ def is_prime(n):
     if n < 2 :
         return False
     
-    if n == 2 or n == 3:
-        return True
+    new_n = round(math.sqrt(n)) + 1
     
-    while True:
+    # 짝수 소수 판별
+    for i in range(2,new_n,2):
         if n % 2 == 0:
             return False
-        elif n % 2 != 0:
-            return True
-        else:
+    
+    # 홀수 
+    for i in range(3,new_n,2):
+        if n % i == 0:
             return False
+        
+        
+    return True
+    
+    # while True:
+        
+    #         return False
+    #     elif n > 3 :
+            
+    #     elif n % 2 != 0: # 홀수
+    #         return True
+    #     else:
+    #         return False
     
      
 
