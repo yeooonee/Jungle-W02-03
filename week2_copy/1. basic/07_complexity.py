@@ -66,8 +66,6 @@ def find_duplicates_hash(nums):
     시간 복잡도: O(n)
     공간 복잡도: O(n)
     """
-    
-    
     seen = set()
     duplicate = set()
     
@@ -76,7 +74,7 @@ def find_duplicates_hash(nums):
             seen.add(i)
         elif i in seen:
             duplicate.add(i)
-        
+    
     return duplicate
     
  
