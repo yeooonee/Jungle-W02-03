@@ -72,28 +72,36 @@ def n_queens(n: int) -> int:
     
     def set(i: int):
       nonlocal cnt
+      
+      #
       for j in range(n):
         flag = True
+        
+        # 같은 행 위치하지 못하도록 
         if j in pos[0:i]:
           continue
-        
+
+        # 대각선 위치하지 못하도록 
         for k in range(i):
           i2,j2 = k, pos[k]
           
+          # 절대값
           di = abs(i - i2)
           dj = abs(j - j2)
           
+          # 같으면 대각선
           if di == dj :
             flag = False
         
+        # 반복문 탈출
         if flag == False:
           continue
         
         pos[i] = j
-        if i == n-1:
+        if i == n-1:  # 모든 열에 퀸 배치 종료
           cnt += 1
         else:
-          set(i + 1)
+          set(i + 1)  # 다음 열에 퀸 배치
             
       return cnt
           
