@@ -122,59 +122,17 @@ def combinations(n: int, k: int) -> list:
     result = []  # 완성된 조합을 모아 둘 곳
 
     def backtrack(start: int, current_combination: list) -> None:
-        """
-        재귀(백트래킹) 헬퍼 함수.
-
-        Args:
-            start: 이번에 시도해볼 수 있는 가장 작은 숫자
-            current_combination: 지금까지 골라 둔 숫자들 (탐색 중)
-        """
-
-        # ──────────────────────────────────────────────────────────────────
-        # [Level 1] 종료 조건 (Base Case)
-        # ──────────────────────────────────────────────────────────────────
-        # 힌트:
-        # - current_combination 의 길이가 k 와 같다면 조합이 완성된 것입니다.
-        # - 그러면 그 조합의 "복사본" 을 result 에 넣고 return 합니다.
-        # - 왜 복사본?  current_combination 은 이후 .append/.pop 으로 계속 변하기
-        #   때문에 그대로 넣으면 모든 조합이 같은 객체를 가리키게 됩니다.
-        # - 복사본 만드는 방법: list(current_combination)  또는 current_combination[:]
-        #
-        # TODO(Level 1): 아래 두 줄을 직접 작성하세요.
-        # if len(current_combination) == ...:
-        #     result.append(...)
-        #     return
-        if len(current_combination) == k:
-          result.append(list(current_combination))  
-          return 
-
-        # ──────────────────────────────────────────────────────────────────
-        # [Level 2] 가지치기 반복문
-        # ──────────────────────────────────────────────────────────────────
-        # 힌트:
-        # - 이번에는 start 부터 n 까지 숫자를 하나씩 시도해 봅니다.
-        # - 반복문 변수 이름은 num 으로 추천 (의미: "이번에 고를 숫자").
-        #
-        # TODO(Level 2): 아래 한 줄을 작성하세요.
-        
-        for num in range(start,n + 1):      # range 가 (start, end) 일떄 end -1 까지 돈다.
-
-            # ──────────────────────────────────────────────────────────────
-            # [Level 3] 백트래킹 3단계
-            # ──────────────────────────────────────────────────────────────
-            # 힌트:
-            #   1) 선택(Choose)  : current_combination 에 num 추가
-            #   2) 탐색(Explore) : backtrack(num + 1, current_combination)
-            #   3) 취소(Unchoose): current_combination 의 마지막 요소를 제거
-            #
-            # TODO(Level 3): 아래 세 줄을 작성하세요.
-            # current_combination.append(...)
-            # backtrack(..., current_combination)
-            # current_combination.pop()
-            
-            current_combination.append(num)
-            backtrack(num + 1, current_combination)
-            current_combination.pop()
+      
+      # base case (종료 조건)
+      if len(current_combination) == k:
+        result.append(current_combination.copy()) # 얕은 복사 필요
+        return
+      
+      # 가지치기 반복문
+      for num in range(start, n + 1): # n 까지 돌아야 하니까 n + 1 (n 으로 하면 n - 1 까지만 돈다.)
+        current_combination.append(num) # append 함
+        backtrack(num + 1, current_combination) # 재귀로 들어가서 num + 1 부터 돈다. 
+        current_combination.pop() # 사용한 값은 pop하기 
 
     # 처음 호출: 시작 숫자는 1, 지금까지 고른 숫자는 비어 있음
     backtrack(1, [])
