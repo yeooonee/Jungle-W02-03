@@ -19,11 +19,11 @@ N 개의 퀸을 서로 공격할 수 없도록 N x N 체스판 위에 배치하�
 서로 공격하지 않는 배치는 정확히 다음 두 가지뿐입니다 (좌우 대칭).
 'Q' = 퀸이 놓인 칸, '.' = 빈 칸
 
-    배치 A           배치 B
-    . Q . .          . . Q .
-    . . . Q          Q . . .
-    Q . . .          . . . Q
-    . . Q .          . Q . .
+  배치 A           배치 B
+  . Q . .          . . Q .
+  . . . Q          Q . . .
+  Q . . .          . . . Q
+  . . Q .          . Q . .
 
 ▣ 구현할 함수
 n_queens(n: int) -> int
@@ -54,7 +54,6 @@ N = 8 -> 92      (전통적인 "8-Queens 문제" 의 답)
 - row 가 N 에 도달했다는 것은 모든 행을 무사히 채웠다는 의미이므로 1가지 경우.
 """
 
-
 def n_queens(n: int) -> int:
     """
     N x N 체스판에 N 개의 퀸을 서로 공격하지 않도록 배치하는 경우의 수를 반환.
@@ -68,7 +67,38 @@ def n_queens(n: int) -> int:
     #       ...
     #   place(0)
     #   return count
-    pass
+    cnt = 0
+    pos = [0] * n
+    
+    def set(i: int):
+      nonlocal cnt
+      for j in range(n):
+        flag = True
+        if j in pos[0:i]:
+          continue
+        
+        for k in range(i):
+          i2,j2 = k, pos[k]
+          
+          di = abs(i - i2)
+          dj = abs(j - j2)
+          
+          if di == dj :
+            flag = False
+        
+        if flag == False:
+          continue
+        
+        pos[i] = j
+        if i == n-1:
+          cnt += 1
+        else:
+          set(i + 1)
+            
+      return cnt
+          
+    return set(0)
+        
 
 
 if __name__ == "__main__":
