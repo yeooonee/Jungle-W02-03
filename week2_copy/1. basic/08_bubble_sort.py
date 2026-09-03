@@ -55,16 +55,17 @@ def bubble_sort_optimized(arr):
     """
     swapped = False
     n = len(arr)
-    # 전체 돌기
-    for j in range(n - 1):
-        for i in range(n - 1):
-            if arr[i] > arr[i+1]:
-                # 인접한 값 교환
+    
+    for j in range(n):
+        for i in range(n - j - 1):  # 정렬된 항목은 제외 
+            if arr[i] > arr[i + 1]:
                 arr[i], arr[i+1] = arr[i+1], arr[i]
                 swapped = True
-        if swapped :
-            return arr
-    return arr
+                
+    if not swapped :
+        return arr
+    
+                
     
 
 
