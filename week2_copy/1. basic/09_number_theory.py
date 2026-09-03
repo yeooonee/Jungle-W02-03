@@ -89,12 +89,10 @@ def extended_gcd(a, b):
     """
     # base case
     if b == 0:
-        return a, 1,0
+        return a, 1, 0  # gcd = ax + by, a = gcd 
     
-    # return
-    gcd, x, y = extended_gcd(b, a%b)
-    return gcd, y, x - (a//b) * y
-
+    gcd, x, y = extended_gcd(b,a%b)
+    return gcd, y, x - a//b * y
     
     
 
@@ -108,20 +106,18 @@ def is_prime(n):
     Returns:
         소수이면 True, 아니면 False
     """
-    if n <= 2 :
+    
+    if n < 3:
         return True
     
     # 짝수 판별
     if n % 2 == 0:
         return False
-    # for i in range(2, n + 1, 2):
-    #     return False
     
     # 홀수 판별
-    for i in range(3, round(n ** 0.5) + 1, 2):
+    for i in range(3,round(n ** 0.5), 2):
         if n % i == 0:
             return False
-    
     return True
     
      
