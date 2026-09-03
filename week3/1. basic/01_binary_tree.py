@@ -44,16 +44,23 @@ def preorder(root):
     result = []
     
     # TODO: root가 None이면 빈 리스트 반환
-    pass
+    if root is None :
+        return result
     
     # TODO: 루트 값 추가
-    pass
+    result.append(root.value)
     
     # TODO: 왼쪽 서브트리 순회
-    pass
+    if root.left is not None:   # 빈 배열 추가 방지
+        obj = preorder(root.left)
+        result.extend(obj)  
+        # extend : 기존 리스트에 다른 리스트 이어 붙이기
+        # append : 기존 리스트에 1개 데이터 추가 [1, [2, [4], [5]], [3]] 형태로 출력됨. 
     
     # TODO: 오른쪽 서브트리 순회
-    pass
+    if root.right is not None:  # 빈 배열 추가 방지
+        obj = preorder(root.right)
+        result.extend(obj)
     
     return result
 
@@ -62,34 +69,41 @@ def inorder(root):
     result = []
     
     # TODO: root가 None이면 빈 리스트 반환
-    pass
+    if root is None :
+        return result
     
     # TODO: 왼쪽 서브트리 순회
-    pass
+    if root.left is not None:
+        obj = inorder(root.left)
+        result.extend(obj)
     
     # TODO: 루트 값 추가
-    pass
+    result.append(root.value)
     
     # TODO: 오른쪽 서브트리 순회
-    pass
+    if root.right is not None:
+        obj = inorder(root.right)
+        result.extend(obj)
     
     return result
 
 def postorder(root):
     """후위 순회: 왼쪽 → 오른쪽 → 루트"""
     result = []
+
+    # root 가 빈값일 시 반환
+    if root is None :
+        return result
     
-    # TODO: root가 None이면 빈 리스트 반환
-    pass
+    # 왼쪽 
+    obj = postorder(root.left)
+    result.extend(obj)  # obj 가 배열이니까 extend 사용하여 붙여주기.
     
-    # TODO: 왼쪽 서브트리 순회
-    pass
+    # 오른쪽
+    result.extend(postorder(root.right))
     
-    # TODO: 오른쪽 서브트리 순회
-    pass
-    
-    # TODO: 루트 값 추가
-    pass
+    # 루트
+    result.append(root.value)
     
     return result
 
