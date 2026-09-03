@@ -36,18 +36,22 @@ def binary_search(arr, target):
     
     left = 0
     right = len(arr)
+
     
-    while left < right:
-        mid = (left + right)// 2
+    while left <= right:
+        mid = (left + right) // 2
         
-        if arr[mid] > target :  # left
-            right = mid - 1
-        elif arr[mid] < target :    # right
-            left = mid + 1
-        elif arr[mid] == target :
+        if arr[mid] == target:
             return mid
-        
+        elif arr[mid] > target: # left
+            right = mid - 1
+        elif arr[mid] < target: # right
+            left = mid + 1
+    
     return -1
+    
+    
+    
             
         
     
