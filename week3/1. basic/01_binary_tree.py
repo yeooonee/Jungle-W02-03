@@ -51,16 +51,12 @@ def preorder(root):
     result.append(root.value)
     
     # TODO: 왼쪽 서브트리 순회
-    if root.left is not None:   # 빈 배열 추가 방지
-        obj = preorder(root.left)
-        result.extend(obj)  
+    result.extend(preorder(root.left))
         # extend : 기존 리스트에 다른 리스트 이어 붙이기
         # append : 기존 리스트에 1개 데이터 추가 [1, [2, [4], [5]], [3]] 형태로 출력됨. 
     
     # TODO: 오른쪽 서브트리 순회
-    if root.right is not None:  # 빈 배열 추가 방지
-        obj = preorder(root.right)
-        result.extend(obj)
+    result.extend(preorder(root.right))
     
     return result
 
@@ -73,17 +69,13 @@ def inorder(root):
         return result
     
     # TODO: 왼쪽 서브트리 순회
-    if root.left is not None:
-        obj = inorder(root.left)
-        result.extend(obj)
+    result.extend(inorder(root.left))
     
     # TODO: 루트 값 추가
     result.append(root.value)
     
     # TODO: 오른쪽 서브트리 순회
-    if root.right is not None:
-        obj = inorder(root.right)
-        result.extend(obj)
+    result.extend(inorder(root.right))
     
     return result
 
@@ -96,8 +88,7 @@ def postorder(root):
         return result
     
     # 왼쪽 
-    obj = postorder(root.left)
-    result.extend(obj)  # obj 가 배열이니까 extend 사용하여 붙여주기.
+    result.extend(postorder(root.left))  # obj 가 배열이니까 extend 사용하여 붙여주기.
     
     # 오른쪽
     result.extend(postorder(root.right))
