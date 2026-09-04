@@ -49,7 +49,7 @@ def create_graph(vertices, edges, directed=False):
 
     
     for j in range(vertices):                           # vertices 만큼 돌기
-        graph.setdefault(j, [])                         # 빈 값 추가 (setdefault : 키 없으면 기본값 넣기)
+        graph.setdefault(j, [])                         # 빈 값 추가 (setdefault : 키 있는지 검색, 없으면 기본값 넣기)
         
         # 역방향 그래프
         if directed == False:
