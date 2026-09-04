@@ -39,6 +39,9 @@ class TreeNode:
         self.left = None
         self.right = None
 
+
+# 재귀의 반환이 헷갈림 (값을 호출한 함수로 올리기)
+# 값이 없을 시 > 계속 타고 들어감 > 근데 끝이어서 root.right 에 값이 없어 > 그럼 False 반환해 
 def search_bst(root, target):
     """
     BST에서 값 검색
@@ -64,8 +67,6 @@ def search_bst(root, target):
     if root.value < target:
         return search_bst(root.right, target)
         
-    return 'dd'
-
 # 테스트 케이스
 if __name__ == "__main__":
     # BST 생성:
