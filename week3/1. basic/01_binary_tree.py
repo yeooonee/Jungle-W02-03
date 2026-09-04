@@ -79,24 +79,30 @@ def inorder(root):
     
     return result
 
+
+# 헬퍼 함수 패턴
 def postorder(root):
     """후위 순회: 왼쪽 → 오른쪽 → 루트"""
     result = []
+    _postorder_helper(root, result)
+    return 
+    
+def _postorder_helper(root, result):
 
     # root 가 빈값일 시 반환
     if root is None :
         return result
     
     # 왼쪽 
-    result.extend(postorder(root.left))  # obj 가 배열이니까 extend 사용하여 붙여주기.
+    _postorder_helper(root.left,result)  # obj 가 배열이니까 extend 사용하여 붙여주기.
     
     # 오른쪽
-    result.extend(postorder(root.right))
+    _postorder_helper(root.right,result)
     
     # 루트
     result.append(root.value)
     
-    return result
+    return 
 
 # 테스트 케이스
 if __name__ == "__main__":
