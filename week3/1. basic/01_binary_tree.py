@@ -94,7 +94,7 @@ def _postorder_helper(root, result):
         return result
     
     # 왼쪽 
-    _postorder_helper(root.left,result)  # obj 가 배열이니까 extend 사용하여 붙여주기.
+    _postorder_helper(root.left,result)  
     
     # 오른쪽
     _postorder_helper(root.right,result)
