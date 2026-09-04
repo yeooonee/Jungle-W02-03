@@ -91,7 +91,7 @@ def _postorder_helper(root, result):
 
     # root 가 빈값일 시 반환
     if root is None :
-        return result
+        return 
     
     # 왼쪽 
     _postorder_helper(root.left,result)  
