@@ -86,7 +86,7 @@ def fibonacci_memo(n, memo=None):
         memo = {}
     
     # TODO: base case 
-    if n == 0 or n == 1:
+    if n < 2:
         return n
     
     # TODO: 이미 계산한 값이 memo에 있으면 반환
