@@ -32,7 +32,7 @@ BFS: [0, 1, 2, 3]
 
 from collections import deque
 
-# 시작점과 동일한 레벨인지는 어떻게 판단하지? -> 
+# 시작점과 동일한 레벨인지는 어떻게 판단하지? 
 def bfs(graph, start):
     """
     너비 우선 탐색
@@ -60,13 +60,13 @@ def bfs(graph, start):
     
     # 큐가 빌때까지
     while queue:
-        # 가장 앞 큐 뽑기
+        # 가장 앞 큐 뽑기 [시작점 뽑기]
         current = queue.pop(0)
-        visited.append(current)
+        visited.append(current) # [방문점에 추가]
         
-        # 인접한 정점 확인
+        # 인접한 정점 확인 [다음에 갈 정점을 확인하기 위해]
         for i in graph[current]:
-            # 큐가 방문하지 않고 & 큐에도 없을 때 
+            # 큐가 방문하지 않고 & 큐에도 없을 때 [다음 방문할 곳 추가하기 위해]
             if i not in visited and i not in queue:
                 queue.append(i)
     
