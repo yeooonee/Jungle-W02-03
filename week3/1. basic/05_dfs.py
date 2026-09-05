@@ -56,8 +56,12 @@ def dfs(graph, start, visited=None):
     # TODO: 인접한 정점들에 대해 재귀
     ## 방문하지 않은 정점이면 재귀 호출
     # 모든 정점 반복문
+    
+    # [시작정점의 연결점 확인]
     for i in graph[start]:
+        # [연결점이 방문하지 않았을 때]
         if i not in visited:
+            # [재귀호출]
             dfs(graph, i, visited)
     
     return visited
