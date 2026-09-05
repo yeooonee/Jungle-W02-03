@@ -84,26 +84,25 @@ def inorder(root):
 def postorder(root):
     """후위 순회: 왼쪽 → 오른쪽 → 루트"""
     result = []
-
-    def _postorder_helper(root, result):
-
-        # root 가 빈값일 시 반환
-        if root is None :
-            return 
-        
-        # 왼쪽 
-        _postorder_helper(root.left,result)  
-        
-        # 오른쪽
-        _postorder_helper(root.right,result)
-        
-        # 루트
-        result.append(root.value)
-        
-        return 
-
     _postorder_helper(root, result)
-    # return 
+    return 
+    
+def _postorder_helper(root, result):
+
+    # root 가 빈값일 시 반환
+    if root is None :
+        return 
+    
+    # 왼쪽 
+    _postorder_helper(root.left,result)  
+    
+    # 오른쪽
+    _postorder_helper(root.right,result)
+    
+    # 루트
+    result.append(root.value)
+    
+    return 
     
 # 테스트 케이스
 if __name__ == "__main__":
