@@ -32,6 +32,7 @@ BFS: [0, 1, 2, 3]
 
 from collections import deque
 
+# 시작점과 동일한 레벨인지는 어떻게 판단하지? -> 
 def bfs(graph, start):
     """
     너비 우선 탐색
@@ -47,13 +48,27 @@ def bfs(graph, start):
     
     # TODO: 큐 생성 및 시작 정점 추가
     ## 방문한 정점 집합
-    pass
-
+    queue = list()
+    # 시작 정점 추가
+    queue.append(start)
+    
+    arr = []
     # TODO: 큐가 빌 때까지 반복
     ## 큐에서 정점 꺼내기
     ## 인접한 정점들 확인
     ## 방문하지 않은 정점이면 큐에 추가
-    pass
+    
+    # 큐가 빌때까지
+    while queue:
+        # 가장 앞 큐 뽑기
+        current = queue.pop(0)
+        visited.append(current)
+        
+        # 인접한 정점 확인
+        for i in graph[current]:
+            # 큐가 방문하지 않고 & 큐에도 없을 때 
+            if i not in visited and i not in queue:
+                queue.append(i)
     
     return visited
 
