@@ -42,31 +42,38 @@ def create_graph(vertices, edges, directed=False):
     """
     # TODO: 빈 그래프 초기화
     graph = {}
+    graph = {i: [] for i in range(vertices)}
+    
     
     # TODO: 간선 추가
     ## 간선 추가 (u에서 v로)
     ## 무방향 그래프면 반대 방향도 추가
-
     
-    for j in range(vertices):                           # vertices 만큼 돌기
-        graph.setdefault(j, [])                         # 빈 값 추가 (setdefault : 키 있는지 검색, 없으면 기본값 넣기)
+    
+    # for j in range(vertices):                           # vertices 만큼 돌기
+    #     graph.setdefault(j, [])                         # 빈 값 추가 (setdefault : 키 있는지 검색, 없으면 기본값 넣기)
         
-        # 양방향 그래프일때 역방향도 추가 
-        if directed == False:
-            for i in range(len(edges)):                 # 간선 리스트 개수만큼 돌기
-                dict_key = edges[i][1]                  # key
+    #     # 양방향 그래프일때 역방향도 추가 
+    #     if directed == False:
+    #         for i in range(len(edges)):                 # 간선 리스트 개수만큼 돌기
+    #             dict_key = edges[i][1]                  # key
                                 
-                if dict_key == j:                        # vertices 현재값이랑 key 가 동일하면
-                    graph[dict_key].append(edges[i][0])  # 배열 value 값으로 복사하기 
+    #             if dict_key == j:                        # vertices 현재값이랑 key 가 동일하면
+    #                 graph[dict_key].append(edges[i][0])  # 배열 value 값으로 복사하기 
         
-        # 단방향 그래프
-        for i in range(len(edges)):                     # 간선 리스트 개수만큼 돌기
-            dict_key = edges[i][0]                      # 첫번째 값 : key
+    #     # 단방향 그래프
+    #     for i in range(len(edges)):                     # 간선 리스트 개수만큼 돌기
+    #         dict_key = edges[i][0]                      # 첫번째 값 : key
             
-            if dict_key == j:                           # vertices 현재값이랑 key 가 동일하면
-                graph[dict_key].append(edges[i][1])     # 배열 만들어서 넣었다가 setdefault 로 이미 value 는 배열이니 append 로 추가 
+    #         if dict_key == j:                           # vertices 현재값이랑 key 가 동일하면
+    #             graph[dict_key].append(edges[i][1])     # 배열 만들어서 넣었다가 setdefault 로 이미 value 는 배열이니 append 로 추가 
                         
-                            
+    
+    for s,e in edges:
+        # graph.setdefault(s, [])
+        graph[s].append(e)
+        if not directed :
+            graph[e].append(s)
     
     return graph
 
