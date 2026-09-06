@@ -44,11 +44,45 @@ def bfs(graph, start):
     Returns:
         방문 순서 리스트
     """
-    visited = []
+    
+    
+    # visited = []
+    
+    # # TODO: 큐 생성 및 시작 정점 추가
+    # ## 방문한 정점 집합
+    # queue = list()
+    # # 시작 정점 추가
+    # queue.append(start)
+    
+    # arr = []
+    # # TODO: 큐가 빌 때까지 반복
+    # ## 큐에서 정점 꺼내기
+    # ## 인접한 정점들 확인
+    # ## 방문하지 않은 정점이면 큐에 추가
+    
+    # # 큐가 빌때까지
+    # while queue:
+    #     # 가장 앞 큐 뽑기 [시작점 뽑기]
+    #     current = queue.pop(0)
+    #     visited.append(current) # [방문점에 추가]
+        
+    #     # 인접한 정점 확인 [다음에 갈 정점을 확인하기 위해]
+    #     for i in graph[current]:
+    #         # 큐가 방문하지 않고 & 큐에도 없을 때 [다음 방문할 곳 추가하기 위해]
+    #         if i not in visited and i not in queue:
+    #             queue.append(i)
+    
+    # return visited
+    
+    
+    
+    
+    # visited = []
+    visited = set()
     
     # TODO: 큐 생성 및 시작 정점 추가
     ## 방문한 정점 집합
-    queue = list()
+    queue = deque()
     # 시작 정점 추가
     queue.append(start)
     
@@ -59,18 +93,19 @@ def bfs(graph, start):
     ## 방문하지 않은 정점이면 큐에 추가
     
     # 큐가 빌때까지
-    while queue:
+    while queue :
         # 가장 앞 큐 뽑기 [시작점 뽑기]
-        current = queue.pop(0)
-        visited.append(current) # [방문점에 추가]
+        # current = queue.pop(0)
+        current = queue.popleft()
+        # visited.append(current) # [방문점에 추가]
         
         # 인접한 정점 확인 [다음에 갈 정점을 확인하기 위해]
         for i in graph[current]:
             # 큐가 방문하지 않고 & 큐에도 없을 때 [다음 방문할 곳 추가하기 위해]
-            if i not in visited and i not in queue:
+            if i not in visited and i not in queue :
                 queue.append(i)
-    
-    return visited
+                visited.add(i)
+    return list(visited)
 
 # 테스트 케이스
 if __name__ == "__main__":
