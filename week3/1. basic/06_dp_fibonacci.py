@@ -91,7 +91,8 @@ def fibonacci_memo(n, memo=None):
     
     # TODO: 이미 계산한 값이 memo에 있으면 반환
     if n in memo:
-        return memo[n]
+        # return memo[n]
+        return memo.get(n)
     
     # TODO: 재귀 호출하여 계산하고 memo에 저장
     else:
