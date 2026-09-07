@@ -53,7 +53,8 @@ def climb_stairs(n):
     
     
     # TODO: dp 배열 생성 및 초기화
-    dp = [0 for i in range(n + 1)]
+    # dp = [0 for i in range(n + 1)]
+    dp = [0]* (n+1)
         
     
     # TODO: 작은 문제부터 차례로 계산
