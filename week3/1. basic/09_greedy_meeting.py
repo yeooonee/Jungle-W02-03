@@ -18,10 +18,13 @@
 선택: [(1, 4), (5, 7), (8, 11), (12, 14)]
 
 힌트:
-- 종료 시간이 빠른 회의부터 선택!
+- 종료 시간이 빠른 회의부터 선택! -> 최대한 많이 채워넣으려고
 - 이전 회의가 끝난 후에 시작하는 회의만 선택
 """
 
+
+# 이중리스트에서 정렬하기
+# lambda x:x[1] -> 익명 함수 생성
 def select_meetings(meetings):
     """
     회의실 배정 (그리디)
@@ -33,19 +36,32 @@ def select_meetings(meetings):
         (배정된 회의 개수, 선택된 회의 리스트)
     """
     # TODO: 회의가 없으면 0 반환
-    pass
+    if meetings is None:
+        return 0
     
     # TODO: 종료 시간 기준으로 정렬
-    pass
+    meetings.sort(key = lambda x:x[1])
     
     selected = []
     
     # TODO: 첫 번째 회의 선택
-    pass
+    selected.append(meetings[0])
     
     # TODO: 나머지 회의들 확인
     ## 이전 회의가 끝난 후 시작하는 회의만 선택
-    pass
+    
+    # 전체 회의를 돌면서
+    for i,j in meetings:
+        #  앞전 회의의 종료시간 < 시작시간 인 케이스만 조회 
+        
+        # 앞전 선택된 회의의 종료시간
+        end_time = selected[len(selected) - 1][1]
+        
+        # 현재 회의의 시작시간
+        start_time = i
+        if start_time > end_time :
+            selected.append((i,j))
+        
     
     return len(selected), selected
 
