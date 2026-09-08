@@ -28,6 +28,20 @@
 
 from collections import deque
 
+
+# 이중배열 첫 요소 비교 
+# while 문 안에서 for i,j in edges:  # 왜 i 가 [] 로 나오는지?
+# i 가 [] 로 나오는 이유 
+
+# 1. 그래프 형태 정의 [정점, 진입차수] 및 정점 기준으로 초기화
+# 2. 간선으로 진입 차수 추가 
+# 3. 진입 차수가 0인 정점들을 큐에 추가 
+# 4. 큐 반복하기
+# 4-1. 큐에서 정점 꺼내기
+# 4-2. pop 한 정점 == edges 시작 정점일 때, graph의 차수 조회하여 큐에 없으면 (정점, 차수) 형태로 큐에 저장
+# 4-3. 현재 꺼낸 값에 차수가 있으면 차수 감소 & 다시 큐에 추가, 없으면 결과 추가 
+
+
 def topological_sort(vertices, edges):
     """
     위상 정렬 (Kahn's Algorithm)
@@ -40,20 +54,51 @@ def topological_sort(vertices, edges):
         위상 정렬 순서
     """
     # TODO: 그래프와 진입 차수 초기화
-    pass
-    
+    # (정점, 진입차수) 형태
+    graph = [[i,0] for i in range(vertices)]
+    # graph = []
+    queue = deque() # deque 의 기본값 []
+
+
     # TODO: 그래프 구성 및 진입 차수 계산
-    pass
+    for i,j in edges:
+        if j == graph[j][0]:
+            graph[j][1] += 1
     
     # TODO: 진입 차수가 0인 정점들을 큐에 추가
-    pass
+    for i in graph:     # [정점, 차수] 형태
+        if i[1] == 0: 
+            queue.append(i)
     
     result = []
     
     # TODO: 큐가 빌 때까지 반복
     ## 큐에서 정점 꺼내기
     ## 인접한 정점들의 진입 차수 감소
-    pass
+    while queue:
+        # 큐에서 정점 꺼내기 
+        v = queue.popleft()
+        
+        # 인접한 정점 큐에 추가하기 
+        for i,j in edges:   # 왜 i 가 [] 로 나오는지?
+            # pop 한 정점이랑 edges의 시작 정점이랑 같을 때 
+            if v[0] == i:
+                # graph 의 차수 조회
+                for a in graph:
+                    # graph 의 정점 [0] 과 edges 의 [1]이 같을 때 그 차수 조회해오기 (전체 graph)
+                    if a[0] == j and a not in queue:
+                    # 정점 가지고 graph 조회해오기
+                        # val = graph[j]
+                        queue.append(a) 
+                
+        # 현재 꺼낸 값 차수가 있으면 차수 감소 & 다시 큐에 추가, 없으면 결과 추가
+        if v[1] > 0 :
+            v[1] -= 1
+            # 큐에 다시 추가 
+            queue.append(v)
+            continue
+        elif v[1] == 0:
+            result.append(v[0])
     
     return result
 
