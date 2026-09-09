@@ -81,6 +81,22 @@ def fibonacci_memo(n, memo=None):
     Returns:
         n번째 피보나치 수
     """
+    if memo is None:
+        memo = {}
+        
+    #base case 
+    if n < 2:
+        return n
+    
+    # 메모이제이션 활용하기     
+    if n in memo:
+        memo_val = memo[n]
+        return memo_val
+    
+    # 메모이제이션 할 값 (fibonacci_memmo[n]값)
+    memo[n] = fibonacci_memo(n - 1, memo) + fibonacci_memo(n - 2, memo)
+    return memo[n]
+        
 
 # 테스트 케이스
 if __name__ == "__main__":
