@@ -49,7 +49,7 @@ def dfs(graph, start, visited=None):
     for i in graph[start]:  # [1,2]
         if i not in visited:
             # 자식 하나 잡자마자 자식 파고들기.
-            return dfs(graph, i, visited)
+            dfs(graph, i, visited)
     
     return visited
     
@@ -65,8 +65,16 @@ if __name__ == "__main__":
         3: [2]
     }
     
+#     graph = {
+#     1: [2, 3],
+#     2: [4],
+#     3: [5],
+#     4: [],
+#     5: []
+# }
+    
     print("=== DFS (깊이 우선 탐색) ===")
-    result = dfs(graph, 0)
+    result = dfs(graph, 1)
     print(f"시작 정점: 0")
     print(f"방문 순서: {result}")
 
