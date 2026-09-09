@@ -24,16 +24,9 @@
 시작: 0
 DFS: [0, 1, 2, 3] (순서는 구현에 따라 다를 수 있음)
 
-힌트:
-- 재귀로 구현
-- 방문 체크 필요
-- 깊이 우선으로 방문
 """
 
 
-# 스택으로 구현했을 때는 [0,2,3,1] 로 결과가 예상됨
-# 순서가 안 중요한 경우 (그래프가 연결되어있는지, 몇 개의 컴포넌트로 나뉘는지, 특정 노드에 도달 가능한지)
-# 순서가 중요한 경우 (방문 순서를 출력하라, 어떤 경로로 갔다가 되돌아왔는지, 사전순으로 가장 빠른 경로 찾기, 방문 순서에 따라 결과가 달라지는 계산)
 def dfs(graph, start, visited=None):
     """
     깊이 우선 탐색 (재귀)
@@ -46,7 +39,21 @@ def dfs(graph, start, visited=None):
     Returns:
         방문 순서 리스트
     """
-
+    if visited is None:
+        visited = []
+    
+    # 첫 정점
+    visited.append(start)
+    
+    # 자식 노드 확인
+    for i in graph[start]:  # [1,2]
+        if i not in visited:
+            # 자식 하나 잡자마자 자식 파고들기.
+            return dfs(graph, i, visited)
+    
+    return visited
+    
+    
 
 # 테스트 케이스
 if __name__ == "__main__":
