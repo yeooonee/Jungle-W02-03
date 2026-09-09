@@ -23,9 +23,6 @@
 2 → [0, 1, 3]
 3 → [2]
 
-힌트:
-- 딕셔너리 사용: {정점: [연결된 정점들]}
-- 무방향 그래프는 양방향 추가
 """
 
 def create_graph(vertices, edges, directed=False):
@@ -40,6 +37,21 @@ def create_graph(vertices, edges, directed=False):
     Returns:
         그래프 딕셔너리
     """
+    # 정점 딕셔너리에 키로 추가 
+    d = dict()
+    
+    for i in range(vertices):   # 근데 이러면 정점이 0~4가 아닐때는 커버가 안되지 않나
+        d.setdefault(i, [])
+    
+    # {정점 : [연결된 정점, ...]}
+    for i,j in edges:
+        if i in d.keys():
+            d[i].append(j)
+            # 무방향그래프일때 반대도 추가
+            if not directed:
+                d[j].append(i)
+        
+    return d
 
 
 # 테스트 케이스
@@ -59,5 +71,4 @@ if __name__ == "__main__":
     graph_directed = create_graph(vertices, edges, directed=True)
     for vertex, neighbors in graph_directed.items():
         print(f"{vertex} → {neighbors}")
-
 
