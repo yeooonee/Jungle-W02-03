@@ -24,15 +24,10 @@
 시작: 0
 BFS: [0, 1, 2, 3]
 
-힌트:
-- Week2의 큐 사용
-- 방문 체크 필요
-- 가까운 것부터 방문
 """
 
 from collections import deque
 
-# 시작점과 동일한 레벨인지는 어떻게 판단하지? 
 def bfs(graph, start):
     """
     너비 우선 탐색
@@ -44,6 +39,26 @@ def bfs(graph, start):
     Returns:
         방문 순서 리스트
     """
+    
+    result = []
+    
+    queue = deque()
+    
+    # 시작점 뽑기
+    queue.append(start)
+    
+    while queue:
+        now_vt = queue.popleft()
+        result.append(now_vt)
+        
+        # 인근 접점 찾기
+        next_vt = graph.get(now_vt)
+        
+        for i in next_vt:
+            if not i in queue and i not in result:
+                queue.append(i)
+        
+    return result
 
 
 # 테스트 케이스
